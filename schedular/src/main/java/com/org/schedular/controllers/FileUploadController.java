@@ -17,14 +17,14 @@ import jakarta.servlet.http.HttpServletRequest;
 @RestController
 public class FileUploadController {
 	@Autowired
-	private FileUploadService csvUploadService;
+	private FileUploadService fileUploadService;
 	@Autowired
 	private ObjectMapper objectMapper;
 	
 	
 	@PostMapping("/uploadFile")
 	public ResponseEntity<String> uploadFile(@RequestParam("file") MultipartFile file, HttpServletRequest request) {
-		ServiceResponse<String, String> response = csvUploadService.saveFilesOnTheServer(file, request);
+		ServiceResponse<String, String> response = fileUploadService.saveFilesOnTheServer(file, request);
 		String ocReturn="";
 		try {
 			objectMapper.enable(SerializationFeature.WRAP_ROOT_VALUE);
